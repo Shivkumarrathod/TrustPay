@@ -408,7 +408,7 @@ export const EscrowDetailModal: React.FC<EscrowDetailModalProps> = ({ escrowId, 
               <div className="text-[11px] text-slate-400 font-medium uppercase tracking-wider">Total Value</div>
               <div className="text-lg font-extrabold text-white mt-1">
                 {Number(formatEther(escrow.totalAmount)).toFixed(4)}{" "}
-                <span className="text-xs text-emerald-400 uppercase">{isNative ? "ETH" : "ERC20"}</span>
+                <span className="text-xs text-emerald-400 uppercase">{isNative ? "MON" : "ERC20"}</span>
               </div>
             </div>
 
@@ -416,7 +416,7 @@ export const EscrowDetailModal: React.FC<EscrowDetailModalProps> = ({ escrowId, 
               <div className="text-[11px] text-slate-400 font-medium uppercase tracking-wider">Deposited</div>
               <div className="text-lg font-extrabold text-cyan-300 mt-1">
                 {Number(formatEther(escrow.depositedAmount)).toFixed(4)}{" "}
-                <span className="text-xs text-slate-400">ETH</span>
+                <span className="text-xs text-slate-400">MON</span>
               </div>
             </div>
 
@@ -424,7 +424,7 @@ export const EscrowDetailModal: React.FC<EscrowDetailModalProps> = ({ escrowId, 
               <div className="text-[11px] text-slate-400 font-medium uppercase tracking-wider">Released to Seller</div>
               <div className="text-lg font-extrabold text-emerald-400 mt-1">
                 {Number(formatEther(escrow.releasedAmount)).toFixed(4)}{" "}
-                <span className="text-xs text-slate-400">ETH</span>
+                <span className="text-xs text-slate-400">MON</span>
               </div>
             </div>
 
@@ -432,7 +432,7 @@ export const EscrowDetailModal: React.FC<EscrowDetailModalProps> = ({ escrowId, 
               <div className="text-[11px] text-slate-400 font-medium uppercase tracking-wider">Refunded to Buyer</div>
               <div className="text-lg font-extrabold text-purple-400 mt-1">
                 {Number(formatEther(escrow.refundedAmount)).toFixed(4)}{" "}
-                <span className="text-xs text-slate-400">ETH</span>
+                <span className="text-xs text-slate-400">MON</span>
               </div>
             </div>
           </div>
@@ -444,7 +444,7 @@ export const EscrowDetailModal: React.FC<EscrowDetailModalProps> = ({ escrowId, 
                 <ExclamationTriangleIcon className="w-5 h-5 text-amber-400 shrink-0" />
                 <span>
                   This escrow is created and awaiting your initial deposit of{" "}
-                  <strong>{Number(formatEther(escrow.totalAmount)).toFixed(4)} ETH</strong>.
+                  <strong>{Number(formatEther(escrow.totalAmount)).toFixed(4)} MON</strong>.
                 </span>
               </div>
 
@@ -464,7 +464,7 @@ export const EscrowDetailModal: React.FC<EscrowDetailModalProps> = ({ escrowId, 
                 >
                   {isPending
                     ? "Depositing..."
-                    : `Deposit & Fund (${Number(formatEther(escrow.totalAmount)).toFixed(3)} ETH)`}
+                    : `Deposit & Fund (${Number(formatEther(escrow.totalAmount)).toFixed(3)} MON)`}
                 </button>
               </div>
             </div>
@@ -522,7 +522,7 @@ export const EscrowDetailModal: React.FC<EscrowDetailModalProps> = ({ escrowId, 
 
                 <div className="flex items-center justify-between p-2 rounded-lg bg-slate-900">
                   <span className="text-slate-400">Payment Currency:</span>
-                  <span className="font-mono text-emerald-400">{isNative ? "Native ETH / MON" : escrow.token}</span>
+                  <span className="font-mono text-emerald-400">{isNative ? "Native MON" : escrow.token}</span>
                 </div>
 
                 <div className="flex items-center justify-between p-2 rounded-lg bg-slate-900">
@@ -573,7 +573,7 @@ export const EscrowDetailModal: React.FC<EscrowDetailModalProps> = ({ escrowId, 
                         <div>
                           <span className="font-bold text-sm text-white">Milestone #{idx + 1}</span>
                           <span className="ml-2 font-mono font-bold text-emerald-400 text-xs">
-                            {Number(formatEther(milestone.amount)).toFixed(4)} ETH
+                            {Number(formatEther(milestone.amount)).toFixed(4)} MON
                           </span>
                         </div>
                       </div>
@@ -654,7 +654,7 @@ export const EscrowDetailModal: React.FC<EscrowDetailModalProps> = ({ escrowId, 
                         <p className="text-[11px] text-slate-300 leading-relaxed">
                           A dispute was raised by one of the participants. The Arbiter has sole authority to resolve
                           this milestone by splitting the{" "}
-                          <strong>{Number(formatEther(milestone.amount)).toFixed(4)} ETH</strong> between Seller and
+                          <strong>{Number(formatEther(milestone.amount)).toFixed(4)} MON</strong> between Seller and
                           Buyer.
                         </p>
 
@@ -681,7 +681,7 @@ export const EscrowDetailModal: React.FC<EscrowDetailModalProps> = ({ escrowId, 
                               <div className="p-2 rounded-lg bg-slate-900 border border-slate-800">
                                 <span className="text-slate-400 block text-[10px]">Seller Receives:</span>
                                 <span className="font-mono font-bold text-emerald-400">
-                                  {((Number(formatEther(milestone.amount)) * sellerSplitPercent) / 100).toFixed(4)} ETH
+                                  {((Number(formatEther(milestone.amount)) * sellerSplitPercent) / 100).toFixed(4)} MON
                                 </span>
                               </div>
                               <div className="p-2 rounded-lg bg-slate-900 border border-slate-800">
@@ -690,7 +690,7 @@ export const EscrowDetailModal: React.FC<EscrowDetailModalProps> = ({ escrowId, 
                                   {((Number(formatEther(milestone.amount)) * (100 - sellerSplitPercent)) / 100).toFixed(
                                     4,
                                   )}{" "}
-                                  ETH
+                                  MON
                                 </span>
                               </div>
                             </div>
@@ -778,7 +778,7 @@ export const EscrowDetailModal: React.FC<EscrowDetailModalProps> = ({ escrowId, 
                           className="btn btn-xs bg-gradient-to-r from-emerald-500 to-teal-500 text-slate-950 font-extrabold border-0 gap-1"
                         >
                           <CurrencyDollarIcon className="w-3.5 h-3.5" />
-                          <span>Release {Number(formatEther(milestone.amount)).toFixed(3)} ETH to Seller</span>
+                          <span>Release {Number(formatEther(milestone.amount)).toFixed(3)} MON to Seller</span>
                         </button>
                       )}
 

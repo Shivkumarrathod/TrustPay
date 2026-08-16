@@ -253,7 +253,7 @@ export const ActivityStream: React.FC<ActivityStreamProps> = ({ onSelectEscrow }
 
                     {evt.amount && (
                       <div className="text-emerald-400 font-mono font-medium mt-0.5">
-                        Amount: {Number(formatEther(evt.amount)).toFixed(4)} ETH
+                        Amount: {Number(formatEther(evt.amount)).toFixed(4)} MON
                       </div>
                     )}
                   </div>

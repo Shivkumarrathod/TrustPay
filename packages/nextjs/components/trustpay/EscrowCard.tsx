@@ -75,7 +75,9 @@ export const EscrowCard: React.FC<EscrowCardProps> = ({ escrow, onSelect }) => {
           <div className="text-xs text-slate-400 font-medium">Escrow Value</div>
           <div className="text-2xl font-extrabold text-white flex items-baseline gap-1.5">
             <span>{Number(formatEther(escrow.totalAmount)).toFixed(4)}</span>
-            <span className="text-xs font-semibold text-emerald-400 uppercase">{isNative ? "ETH" : "ERC20"}</span>
+            <span className="text-xs font-semibold text-emerald-400 uppercase">
+              {isNative ? "MON" : "ERC20"}
+            </span>
           </div>
         </div>
 

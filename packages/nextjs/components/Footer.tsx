@@ -24,7 +24,7 @@ export const Footer = () => {
               <div>
                 <div className="btn bg-slate-900/90 hover:bg-slate-800 text-emerald-400 border border-emerald-500/30 btn-sm font-medium gap-1.5 cursor-auto backdrop-blur-md">
                   <CurrencyDollarIcon className="h-4 w-4 text-emerald-400" />
-                  <span>ETH/USD: ${nativeCurrencyPrice.toFixed(2)}</span>
+                  <span>{targetNetwork.nativeCurrency?.symbol ?? "MON"}/USD: ${nativeCurrencyPrice.toFixed(2)}</span>
                 </div>
               </div>
             )}
@@ -50,7 +50,7 @@ export const Footer = () => {
           <ShieldCheckIcon className="h-5 w-5 text-emerald-400" />
           <span className="font-semibold text-slate-200">TrustPay Decentralized Escrow</span>
           <span className="text-slate-500">|</span>
-          <span className="text-slate-400">Trustless milestone-based protection on Ethereum & L2s</span>
+          <span className="text-slate-400">Trustless milestone-based protection on Monad Testnet & EVM</span>
         </div>
 
         <div className="flex items-center gap-4 text-slate-400">

@@ -70,7 +70,7 @@ export const DisputeCenter: React.FC<DisputeCenterProps> = ({ escrows, onSelectE
                   <div className="text-sm font-bold text-white">
                     Total In Escrow:{" "}
                     <span className="font-mono text-emerald-400">
-                      {Number(formatEther(escrow.totalAmount)).toFixed(4)} ETH
+                      {Number(formatEther(escrow.totalAmount)).toFixed(4)} MON
                     </span>
                   </div>
 

@@ -35,7 +35,7 @@ export const HowItWorksModal: React.FC<HowItWorksModalProps> = ({ isOpen, onClos
       icon: <LockClosedIcon className="w-6 h-6 text-cyan-400" />,
       color: "border-cyan-500/40 bg-cyan-950/20",
       description:
-        "Buyer deposits the total contract amount (ETH or ERC20). Funds are held in a non-custodial smart contract governed by OpenZeppelin ReentrancyGuard.",
+        "Buyer deposits the total contract amount (MON or ERC20). Funds are held in a non-custodial smart contract governed by OpenZeppelin ReentrancyGuard.",
     },
     {
       step: 3,

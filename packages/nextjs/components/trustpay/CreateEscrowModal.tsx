@@ -19,7 +19,7 @@ import { notification } from "~~/utils/scaffold-eth";
 type MilestoneDraft = {
   id: number;
   title: string;
-  amount: string; // in ETH
+  amount: string; // in MON
 };
 
 type CreateEscrowModalProps = {
@@ -40,8 +40,8 @@ export const CreateEscrowModal: React.FC<CreateEscrowModalProps> = ({ isOpen, on
   const [customDeadlineDate, setCustomDeadlineDate] = useState("");
 
   const [milestones, setMilestones] = useState<MilestoneDraft[]>([
-    { id: 1, title: "Milestone 1: Project Kickoff & Design", amount: "0.01" },
-    { id: 2, title: "Milestone 2: Core Development & MVP", amount: "0.02" },
+    { id: 1, title: "Milestone 1: Project Kickoff & Design", amount: "0.1" },
+    { id: 2, title: "Milestone 2: Core Development & MVP", amount: "0.2" },
   ]);
 
   const { writeContractAsync, isPending } = useScaffoldWriteContract({
@@ -53,7 +53,7 @@ export const CreateEscrowModal: React.FC<CreateEscrowModalProps> = ({ isOpen, on
   // Add Milestone
   const addMilestone = () => {
     const nextId = milestones.length > 0 ? Math.max(...milestones.map(m => m.id)) + 1 : 1;
-    setMilestones([...milestones, { id: nextId, title: `Milestone ${nextId}: Deliverable`, amount: "0.01" }]);
+    setMilestones([...milestones, { id: nextId, title: `Milestone ${nextId}: Deliverable`, amount: "0.1" }]);
   };
 
   // Remove Milestone
@@ -71,16 +71,15 @@ export const CreateEscrowModal: React.FC<CreateEscrowModalProps> = ({ isOpen, on
   };
 
   // Calculate Total Amount
-  const totalEthAmount = milestones.reduce((sum, m) => {
+  const totalMonAmount = milestones.reduce((sum, m) => {
     const val = parseFloat(m.amount) || 0;
     return sum + val;
   }, 0);
 
   // Quick helper to fill demo arbiter / seller
   const fillDemoAddresses = () => {
-    // Standard test accounts
-    setSeller("0x70997970C51812dc3A010C7d01b50e0d17dc79C8"); // Hardhat Account #1
-    setArbiter("0x3C44CdDdB6a900fa2b585dd299e03d12FA4293BC"); // Hardhat Account #2
+    setSeller("0x70997970C51812dc3A010C7d01b50e0d17dc79C8");
+    setArbiter("0x3C44CdDdB6a900fa2b585dd299e03d12FA4293BC");
     notification.success("Filled demo test addresses");
   };
 
@@ -258,8 +257,8 @@ export const CreateEscrowModal: React.FC<CreateEscrowModalProps> = ({ isOpen, on
                     : "bg-slate-950 border-slate-800 text-slate-400 hover:border-slate-700"
                 }`}
               >
-                <div className="text-sm font-bold text-emerald-400">Native ETH / MON</div>
-                <div className="text-xs text-slate-400">Direct blockchain native transfer</div>
+                <div className="text-sm font-bold text-emerald-400">Native MON</div>
+                <div className="text-xs text-slate-400">Direct Monad blockchain transfer</div>
               </button>
 
               <button
@@ -331,14 +330,14 @@ export const CreateEscrowModal: React.FC<CreateEscrowModalProps> = ({ isOpen, on
                   <div className="flex items-center gap-2 w-full sm:w-44 shrink-0">
                     <input
                       type="number"
-                      step="0.001"
+                      step="0.01"
                       min="0.0001"
                       value={m.amount}
                       onChange={e => updateMilestone(m.id, "amount", e.target.value)}
                       placeholder="Amount"
                       className="w-full px-3 py-1.5 rounded-lg bg-slate-900 border border-slate-700 text-xs text-white focus:border-emerald-500 focus:outline-none font-mono text-right"
                     />
-                    <span className="text-xs text-slate-400 font-semibold shrink-0">ETH</span>
+                    <span className="text-xs text-slate-400 font-semibold shrink-0">MON</span>
 
                     {milestones.length > 1 && (
                       <button
@@ -358,7 +357,7 @@ export const CreateEscrowModal: React.FC<CreateEscrowModalProps> = ({ isOpen, on
             <div className="flex items-center justify-between p-3 rounded-xl bg-emerald-950/20 border border-emerald-500/30 text-emerald-300">
               <span className="text-xs font-medium">Total Escrow Value ({milestones.length} Milestones):</span>
               <span className="text-base font-extrabold font-mono text-emerald-400">
-                {totalEthAmount.toFixed(4)} ETH
+                {totalMonAmount.toFixed(4)} MON
               </span>
             </div>
           </div>
@@ -417,7 +416,7 @@ export const CreateEscrowModal: React.FC<CreateEscrowModalProps> = ({ isOpen, on
             ) : (
               <>
                 <ShieldCheckIcon className="w-4 h-4 text-slate-950" />
-                <span>Deploy Escrow ({totalEthAmount.toFixed(3)} ETH)</span>
+                <span>Deploy Escrow ({totalMonAmount.toFixed(3)} MON)</span>
               </>
             )}
           </button>

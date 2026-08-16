@@ -131,7 +131,7 @@ export const TrustPayHero: React.FC<TrustPayHeroProps> = ({
                 </div>
                 <div className="text-2xl sm:text-3xl font-extrabold text-cyan-300">
                   {Number(formatEther(totalVolume)).toFixed(3)}{" "}
-                  <span className="text-xs font-semibold text-slate-400">ETH</span>
+                  <span className="text-xs font-semibold text-slate-400">MON</span>
                 </div>
                 <div className="text-[11px] text-slate-400 mt-1">Across all milestone releases</div>
               </div>
