@@ -85,6 +85,11 @@ export const DisputeCenter: React.FC<DisputeCenterProps> = ({ escrows, onSelectE
                     </div>
                     <div className="flex items-center gap-1">
                       <span>Arbiter:</span>
+                      {escrow.arbiter.toLowerCase() === "0xcfe82707bfa7ecda2a4850e8d13c616193fdf75d" && (
+                        <span className="text-[10px] bg-cyan-500/20 text-cyan-300 px-1.5 py-0.5 rounded font-semibold border border-cyan-500/30">
+                          Official
+                        </span>
+                      )}
                       <Address address={escrow.arbiter} size="xs" />
                     </div>
                   </div>

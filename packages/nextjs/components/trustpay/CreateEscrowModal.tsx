@@ -16,6 +16,8 @@ import {
 import { useScaffoldWriteContract } from "~~/hooks/scaffold-eth";
 import { notification } from "~~/utils/scaffold-eth";
 
+import { TRUSTPAY_DEFAULT_ARBITER } from "~~/components/trustpay/types";
+
 type MilestoneDraft = {
   id: number;
   title: string;
@@ -33,7 +35,7 @@ export const CreateEscrowModal: React.FC<CreateEscrowModalProps> = ({ isOpen, on
 
   // Form State
   const [seller, setSeller] = useState("");
-  const [arbiter, setArbiter] = useState("");
+  const [arbiter, setArbiter] = useState(TRUSTPAY_DEFAULT_ARBITER);
   const [tokenType, setTokenType] = useState<"native" | "erc20">("native");
   const [customTokenAddress, setCustomTokenAddress] = useState("");
   const [deadlineDays, setDeadlineDays] = useState(7);
@@ -78,9 +80,9 @@ export const CreateEscrowModal: React.FC<CreateEscrowModalProps> = ({ isOpen, on
 
   // Quick helper to fill demo arbiter / seller
   const fillDemoAddresses = () => {
-    setSeller("0x70997970C51812dc3A010C7d01b50e0d17dc79C8");
-    setArbiter("0x3C44CdDdB6a900fa2b585dd299e03d12FA4293BC");
-    notification.success("Filled demo test addresses");
+    setSeller("0x25e03a9f896267c823C70aC88bBFB1A49FB46036");
+    setArbiter(TRUSTPAY_DEFAULT_ARBITER);
+    notification.success("Filled demo seller address & official arbiter");
   };
 
   const handleCreate = async () => {
@@ -224,18 +226,23 @@ export const CreateEscrowModal: React.FC<CreateEscrowModalProps> = ({ isOpen, on
             </div>
 
             <div>
-              <label className="block text-xs font-medium text-slate-300 mb-1">
-                Arbiter Address <span className="text-cyan-400">*</span>
-              </label>
+              <div className="flex items-center justify-between mb-1">
+                <label className="block text-xs font-medium text-slate-300">
+                  Arbiter Address <span className="text-cyan-400">*</span>
+                </label>
+                <span className="text-[10px] text-cyan-400 bg-cyan-950/60 border border-cyan-500/30 px-2 py-0.5 rounded-full font-medium">
+                  Official TrustPay Arbiter
+                </span>
+              </div>
               <input
                 type="text"
                 value={arbiter}
                 onChange={e => setArbiter(e.target.value)}
-                placeholder="0x... (Trusted third-party to resolve disputes)"
+                placeholder="0x... (Official Arbiter)"
                 className="w-full px-3.5 py-2.5 rounded-xl bg-slate-950 border border-slate-700/80 text-slate-100 text-sm focus:border-cyan-500 focus:outline-none font-mono"
               />
               <p className="text-[11px] text-slate-500 mt-1">
-                The Arbiter only steps in if a dispute is raised to split milestone funds fairly.
+                Default constant arbiter <code className="text-cyan-400 font-mono">0xcfE8...f75d</code> ensures neutral dispute settlement.
               </p>
             </div>
           </div>

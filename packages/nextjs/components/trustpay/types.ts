@@ -1,5 +1,7 @@
 import { Address } from "viem";
 
+export const TRUSTPAY_DEFAULT_ARBITER: Address = "0xcfE82707bfA7ecdA2a4850e8d13C616193FDf75d";
+
 export enum EscrowStatus {
   Created = 0,
   Funded = 1,

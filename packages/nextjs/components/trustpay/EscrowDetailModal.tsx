@@ -498,7 +498,14 @@ export const EscrowDetailModal: React.FC<EscrowDetailModalProps> = ({ escrowId, 
                     <ScaleIcon className="w-3.5 h-3.5 text-violet-400" />
                     <span>Arbiter:</span>
                   </span>
-                  <Address address={escrow.arbiter} size="xs" />
+                  <div className="flex items-center gap-1.5">
+                    {escrow.arbiter.toLowerCase() === "0xcfe82707bfa7ecda2a4850e8d13c616193fdf75d" && (
+                      <span className="text-[10px] bg-cyan-500/20 text-cyan-300 px-1.5 py-0.5 rounded font-semibold border border-cyan-500/30">
+                        Official
+                      </span>
+                    )}
+                    <Address address={escrow.arbiter} size="xs" />
+                  </div>
                 </div>
               </div>
             </div>
