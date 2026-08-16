@@ -68,10 +68,12 @@ const Home: NextPage = () => {
           activeDisputesCount={activeDisputesCount}
           onCreateClick={() => setIsCreateOpen(true)}
           onHowItWorksClick={() => setIsHowItWorksOpen(true)}
-          activeFilter={activeFilter}
-          setActiveFilter={filter => {
-            setActiveFilter(filter);
+          onMyContractsClick={() => {
+            setActiveFilter("my");
             setActiveTab("escrows");
+          }}
+          onDisputesClick={() => {
+            setActiveTab("disputes");
           }}
         />
 

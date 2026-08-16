@@ -54,6 +54,7 @@
     "@coinbase/cdp-sdk": "1.52.0"
   },
   "devDependencies": {
+    "hardhat": "^3.13.0",
     "husky": "~9.1.6",
     "lint-staged": "~13.2.2"
   },
