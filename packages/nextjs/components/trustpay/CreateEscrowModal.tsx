@@ -5,6 +5,7 @@ import { isAddress, parseEther, zeroAddress } from "viem";
 import { useAccount } from "wagmi";
 import {
   CalendarDaysIcon,
+  LockClosedIcon,
   PlusIcon,
   ScaleIcon,
   ShieldCheckIcon,
@@ -35,7 +36,6 @@ export const CreateEscrowModal: React.FC<CreateEscrowModalProps> = ({ isOpen, on
 
   // Form State
   const [seller, setSeller] = useState("");
-  const [arbiter, setArbiter] = useState(TRUSTPAY_DEFAULT_ARBITER);
   const [tokenType, setTokenType] = useState<"native" | "erc20">("native");
   const [customTokenAddress, setCustomTokenAddress] = useState("");
   const [deadlineDays, setDeadlineDays] = useState(7);
@@ -102,11 +102,10 @@ export const CreateEscrowModal: React.FC<CreateEscrowModalProps> = ({ isOpen, on
     return sum + val;
   }, 0);
 
-  // Quick helper to fill demo arbiter / seller
+  // Quick helper to fill demo seller
   const fillDemoAddresses = () => {
     setSeller("0x25e03a9f896267c823C70aC88bBFB1A49FB46036");
-    setArbiter(TRUSTPAY_DEFAULT_ARBITER);
-    notification.success("Filled demo seller address & official arbiter");
+    notification.success("Filled demo seller address");
   };
 
   const handleCreate = async () => {
@@ -122,11 +121,6 @@ export const CreateEscrowModal: React.FC<CreateEscrowModalProps> = ({ isOpen, on
 
     if (seller.toLowerCase() === connectedAddress.toLowerCase()) {
       notification.error("Seller address cannot be the same as your Buyer address");
-      return;
-    }
-
-    if (!isAddress(arbiter)) {
-      notification.error("Invalid Arbiter wallet address");
       return;
     }
 
@@ -176,7 +170,7 @@ export const CreateEscrowModal: React.FC<CreateEscrowModalProps> = ({ isOpen, on
           tokenAddress,
           totalBigInt,
           deadlineTimestamp,
-          arbiter as `0x${string}`,
+          TRUSTPAY_DEFAULT_ARBITER,
           milestoneBigInts,
         ],
       });
@@ -249,24 +243,33 @@ export const CreateEscrowModal: React.FC<CreateEscrowModalProps> = ({ isOpen, on
               />
             </div>
 
+            {/* Fixed Protocol Arbiter */}
             <div>
-              <div className="flex items-center justify-between mb-1">
-                <label className="block text-xs font-medium text-slate-300">
-                  Arbiter Address <span className="text-cyan-400">*</span>
+              <div className="flex items-center justify-between mb-1.5">
+                <label className="block text-xs font-medium text-slate-300 flex items-center gap-1.5">
+                  <LockClosedIcon className="w-3.5 h-3.5 text-cyan-400" />
+                  <span>Protocol Arbiter (Fixed & Constant)</span>
                 </label>
-                <span className="text-[10px] text-cyan-400 bg-cyan-950/60 border border-cyan-500/30 px-2 py-0.5 rounded-full font-medium">
-                  Official TrustPay Arbiter
+                <span className="text-[10px] text-emerald-400 bg-emerald-950/60 border border-emerald-500/30 px-2 py-0.5 rounded-full font-bold">
+                  ✓ Verified Official Arbiter
                 </span>
               </div>
-              <input
-                type="text"
-                value={arbiter}
-                onChange={e => setArbiter(e.target.value)}
-                placeholder="0x... (Official Arbiter)"
-                className="w-full px-3.5 py-2.5 rounded-xl bg-slate-950 border border-slate-700/80 text-slate-100 text-sm focus:border-cyan-500 focus:outline-none font-mono"
-              />
+
+              <div className="flex items-center justify-between p-3 rounded-xl bg-slate-950/90 border border-cyan-500/40 text-slate-200">
+                <div className="flex items-center gap-2">
+                  <div className="w-6 h-6 rounded-full bg-cyan-500/20 text-cyan-300 flex items-center justify-center font-mono text-xs font-bold border border-cyan-500/30">
+                    ⚖
+                  </div>
+                  <span className="font-mono text-xs sm:text-sm text-cyan-300 font-semibold select-all break-all">
+                    {TRUSTPAY_DEFAULT_ARBITER}
+                  </span>
+                </div>
+                <span className="text-[10px] text-slate-400 bg-slate-900 px-2 py-1 rounded border border-slate-800 shrink-0 font-medium ml-2">
+                  Locked
+                </span>
+              </div>
               <p className="text-[11px] text-slate-500 mt-1">
-                Default constant arbiter <code className="text-cyan-400 font-mono">0xcfE8...f75d</code> ensures neutral dispute settlement.
+                Fixed neutral arbiter assigned to all TrustPay agreements. Cannot be changed.
               </p>
             </div>
           </div>
