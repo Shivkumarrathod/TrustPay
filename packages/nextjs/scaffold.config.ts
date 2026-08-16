@@ -11,7 +11,19 @@ export const monadTestnet = defineChain({
   },
   rpcUrls: {
     default: {
-      http: ["https://10143.rpc.thirdweb.com", "https://monad-testnet-rpc.huginn.tech"],
+      http: [
+        "https://testnet-rpc.monad.xyz",
+        "https://monad-testnet.drpc.org",
+        "https://monad-testnet-rpc.huginn.tech",
+        "https://10143.rpc.thirdweb.com",
+      ],
+    },
+    public: {
+      http: [
+        "https://testnet-rpc.monad.xyz",
+        "https://monad-testnet.drpc.org",
+        "https://monad-testnet-rpc.huginn.tech",
+      ],
     },
   },
   blockExplorers: {

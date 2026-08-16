@@ -166,7 +166,7 @@ export default defineConfig({
     },
     monadTestnet: {
       type: "http",
-      url: "https://10143.rpc.thirdweb.com",
+      url: "https://testnet-rpc.monad.xyz",
       accounts: [deployerPrivateKey],
     },
   },

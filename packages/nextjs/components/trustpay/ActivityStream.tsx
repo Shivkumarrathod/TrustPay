@@ -69,7 +69,7 @@ export const ActivityStream: React.FC<ActivityStreamProps> = ({ onSelectEscrow }
       try {
         const milestoneMap: Record<string, Milestone[]> = {};
 
-        await Promise.all(
+        await Promise.allSettled(
           escrows.map(async escrow => {
             try {
               const res: any = await publicClient.readContract({

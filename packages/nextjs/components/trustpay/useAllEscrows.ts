@@ -20,6 +20,24 @@ export const useAllEscrows = () => {
 
   const count = rawCount ? Number(rawCount) : 0;
 
+  const fetchSingleEscrow = async (client: any, address: string, abi: any, id: bigint, retries = 2): Promise<any> => {
+    for (let attempt = 0; attempt <= retries; attempt++) {
+      try {
+        const res = await client.readContract({
+          address,
+          abi,
+          functionName: "getEscrow",
+          args: [id],
+        });
+        return res;
+      } catch (err) {
+        if (attempt === retries) throw err;
+        // Small exponential delay before retrying
+        await new Promise(res => setTimeout(res, 200 * (attempt + 1)));
+      }
+    }
+  };
+
   const fetchEscrows = useCallback(async () => {
     if (!publicClient || !deployedContractData || count === 0) {
       if (count === 0) {
@@ -31,42 +49,41 @@ export const useAllEscrows = () => {
 
     setIsLoading(true);
     try {
-      const promises: Promise<any>[] = [];
+      const promises = Array.from({ length: count }, (_, i) =>
+        fetchSingleEscrow(publicClient, deployedContractData.address, deployedContractData.abi, BigInt(i)),
+      );
 
-      for (let i = 0; i < count; i++) {
-        promises.push(
-          publicClient.readContract({
-            address: deployedContractData.address,
-            abi: deployedContractData.abi,
-            functionName: "getEscrow",
-            args: [BigInt(i)],
-          }),
-        );
-      }
+      const settled = await Promise.allSettled(promises);
 
-      const results = await Promise.all(promises);
-
-      const parsed: Escrow[] = results.map((r: any) => ({
-        id: r.id,
-        buyer: r.buyer,
-        seller: r.seller,
-        token: r.token,
-        totalAmount: r.totalAmount,
-        depositedAmount: r.depositedAmount,
-        releasedAmount: r.releasedAmount,
-        refundedAmount: r.refundedAmount,
-        deadline: r.deadline,
-        arbiter: r.arbiter,
-        status: r.status as EscrowStatus,
-        milestoneCount: r.milestoneCount,
-      }));
+      const parsed: Escrow[] = [];
+      settled.forEach((result, idx) => {
+        if (result.status === "fulfilled" && result.value) {
+          const r = result.value;
+          parsed.push({
+            id: r.id !== undefined ? r.id : BigInt(idx),
+            buyer: r.buyer,
+            seller: r.seller,
+            token: r.token,
+            totalAmount: r.totalAmount,
+            depositedAmount: r.depositedAmount,
+            releasedAmount: r.releasedAmount,
+            refundedAmount: r.refundedAmount,
+            deadline: r.deadline,
+            arbiter: r.arbiter,
+            status: r.status as EscrowStatus,
+            milestoneCount: r.milestoneCount,
+          });
+        }
+      });
 
       // Sort newest escrows first
       parsed.sort((a, b) => Number(b.id - a.id));
 
-      setEscrows(parsed);
+      if (parsed.length > 0 || count === 0) {
+        setEscrows(parsed);
+      }
     } catch (err) {
-      console.error("Error fetching all escrows:", err);
+      console.warn("Notice: Error loading escrows from Monad RPC:", err);
     } finally {
       setIsLoading(false);
     }
