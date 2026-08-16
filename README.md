@@ -1,5 +1,5 @@
 # 🛡️ TrustPay — Decentralized Multi-Party Milestone Escrow Protocol
-
+<img width="1919" height="978" alt="image" src="https://github.com/user-attachments/assets/93aba2a8-3a69-43c0-a98e-59d834007a9f" />
 > 🚀 **Live Production dApp:** [**https://trust-pay-nextjs.vercel.app/**](https://trust-pay-nextjs.vercel.app/)
 
 [![Live dApp on Vercel](https://img.shields.io/badge/Live%20dApp-trust--pay--nextjs.vercel.app-000000?style=for-the-badge&logo=vercel&logoColor=white)](https://trust-pay-nextjs.vercel.app/)
