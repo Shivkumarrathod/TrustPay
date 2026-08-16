@@ -6,8 +6,11 @@ import generateTsAbis from "./scripts/generateTsAbis.js";
 
 // If not set, it uses the hardhat account 0 private key.
 // You can generate a random account with `yarn generate` or `yarn account:import` to import your existing PK
-const deployerPrivateKey =
-  process.env.__RUNTIME_DEPLOYER_PRIVATE_KEY ?? "0xac0974bec39a17e36ba4a6b4d238ff944bacb478cbed5efcae784d7bf4f2ff80";
+const rawPrivateKey =
+  process.env.DEPLOYER_PRIVATE_KEY ??
+  process.env.__RUNTIME_DEPLOYER_PRIVATE_KEY ??
+  "0xac0974bec39a17e36ba4a6b4d238ff944bacb478cbed5efcae784d7bf4f2ff80";
+const deployerPrivateKey = rawPrivateKey.startsWith("0x") ? rawPrivateKey : `0x${rawPrivateKey}`;
 
 // If not set, it uses ours Alchemy's default API key.
 // You can get your own at https://dashboard.alchemyapi.io
@@ -33,6 +36,7 @@ export default defineConfig({
       {
         version: "0.8.30",
         settings: {
+          evmVersion: "prague",
           optimizer: {
             enabled: true,
             // https://docs.soliditylang.org/en/latest/using-the-compiler.html#optimizer-options
@@ -158,6 +162,11 @@ export default defineConfig({
     polygonZkEvmCardona: {
       type: "http",
       url: `https://polygonzkevm-cardona.g.alchemy.com/v2/${providerApiKey}`,
+      accounts: [deployerPrivateKey],
+    },
+    monadTestnet: {
+      type: "http",
+      url: "https://10143.rpc.thirdweb.com",
       accounts: [deployerPrivateKey],
     },
   },

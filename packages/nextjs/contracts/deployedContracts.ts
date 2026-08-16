@@ -5,6 +5,1034 @@
 import { GenericContractsDeclaration } from "~~/utils/scaffold-eth/contract";
 
 const deployedContracts = {
+  10143: {
+    YourContract: {
+      address: "0xb109ad9679cca4757ba689b1878b3dc78e5ba8fa",
+      abi: [
+        {
+          inputs: [
+            {
+              internalType: "address",
+              name: "_owner",
+              type: "address",
+            },
+          ],
+          stateMutability: "nonpayable",
+          type: "constructor",
+        },
+        {
+          inputs: [],
+          name: "AlreadyFunded",
+          type: "error",
+        },
+        {
+          inputs: [],
+          name: "DeadlineNotReached",
+          type: "error",
+        },
+        {
+          inputs: [],
+          name: "DeadlineReached",
+          type: "error",
+        },
+        {
+          inputs: [],
+          name: "DisputeActive",
+          type: "error",
+        },
+        {
+          inputs: [],
+          name: "IncorrectPayment",
+          type: "error",
+        },
+        {
+          inputs: [],
+          name: "InvalidAddress",
+          type: "error",
+        },
+        {
+          inputs: [],
+          name: "InvalidAmount",
+          type: "error",
+        },
+        {
+          inputs: [],
+          name: "InvalidDeadline",
+          type: "error",
+        },
+        {
+          inputs: [],
+          name: "InvalidEscrow",
+          type: "error",
+        },
+        {
+          inputs: [],
+          name: "InvalidMilestoneStatus",
+          type: "error",
+        },
+        {
+          inputs: [],
+          name: "InvalidMilestones",
+          type: "error",
+        },
+        {
+          inputs: [],
+          name: "InvalidStatus",
+          type: "error",
+        },
+        {
+          inputs: [],
+          name: "MilestoneDoesNotExist",
+          type: "error",
+        },
+        {
+          inputs: [],
+          name: "NoDispute",
+          type: "error",
+        },
+        {
+          inputs: [],
+          name: "NotArbiter",
+          type: "error",
+        },
+        {
+          inputs: [],
+          name: "NotBuyer",
+          type: "error",
+        },
+        {
+          inputs: [],
+          name: "NotFunded",
+          type: "error",
+        },
+        {
+          inputs: [],
+          name: "NotParticipant",
+          type: "error",
+        },
+        {
+          inputs: [],
+          name: "NotSeller",
+          type: "error",
+        },
+        {
+          inputs: [],
+          name: "NothingToRelease",
+          type: "error",
+        },
+        {
+          inputs: [],
+          name: "ReentrancyGuardReentrantCall",
+          type: "error",
+        },
+        {
+          inputs: [
+            {
+              internalType: "address",
+              name: "token",
+              type: "address",
+            },
+          ],
+          name: "SafeERC20FailedOperation",
+          type: "error",
+        },
+        {
+          inputs: [],
+          name: "TransferFailed",
+          type: "error",
+        },
+        {
+          anonymous: false,
+          inputs: [
+            {
+              indexed: true,
+              internalType: "uint256",
+              name: "escrowId",
+              type: "uint256",
+            },
+            {
+              indexed: true,
+              internalType: "uint256",
+              name: "milestoneId",
+              type: "uint256",
+            },
+            {
+              indexed: true,
+              internalType: "address",
+              name: "raisedBy",
+              type: "address",
+            },
+          ],
+          name: "DisputeRaised",
+          type: "event",
+        },
+        {
+          anonymous: false,
+          inputs: [
+            {
+              indexed: true,
+              internalType: "uint256",
+              name: "escrowId",
+              type: "uint256",
+            },
+            {
+              indexed: true,
+              internalType: "uint256",
+              name: "milestoneId",
+              type: "uint256",
+            },
+            {
+              indexed: false,
+              internalType: "uint256",
+              name: "sellerAmount",
+              type: "uint256",
+            },
+            {
+              indexed: false,
+              internalType: "uint256",
+              name: "buyerAmount",
+              type: "uint256",
+            },
+          ],
+          name: "DisputeResolved",
+          type: "event",
+        },
+        {
+          anonymous: false,
+          inputs: [
+            {
+              indexed: true,
+              internalType: "uint256",
+              name: "escrowId",
+              type: "uint256",
+            },
+          ],
+          name: "EscrowCancelled",
+          type: "event",
+        },
+        {
+          anonymous: false,
+          inputs: [
+            {
+              indexed: true,
+              internalType: "uint256",
+              name: "escrowId",
+              type: "uint256",
+            },
+          ],
+          name: "EscrowCompleted",
+          type: "event",
+        },
+        {
+          anonymous: false,
+          inputs: [
+            {
+              indexed: true,
+              internalType: "uint256",
+              name: "escrowId",
+              type: "uint256",
+            },
+            {
+              indexed: true,
+              internalType: "address",
+              name: "buyer",
+              type: "address",
+            },
+            {
+              indexed: true,
+              internalType: "address",
+              name: "seller",
+              type: "address",
+            },
+            {
+              indexed: false,
+              internalType: "address",
+              name: "token",
+              type: "address",
+            },
+            {
+              indexed: false,
+              internalType: "uint256",
+              name: "totalAmount",
+              type: "uint256",
+            },
+            {
+              indexed: false,
+              internalType: "uint256",
+              name: "deadline",
+              type: "uint256",
+            },
+            {
+              indexed: false,
+              internalType: "address",
+              name: "arbiter",
+              type: "address",
+            },
+          ],
+          name: "EscrowCreated",
+          type: "event",
+        },
+        {
+          anonymous: false,
+          inputs: [
+            {
+              indexed: true,
+              internalType: "uint256",
+              name: "escrowId",
+              type: "uint256",
+            },
+            {
+              indexed: false,
+              internalType: "uint256",
+              name: "amount",
+              type: "uint256",
+            },
+          ],
+          name: "EscrowFunded",
+          type: "event",
+        },
+        {
+          anonymous: false,
+          inputs: [
+            {
+              indexed: true,
+              internalType: "address",
+              name: "greetingSetter",
+              type: "address",
+            },
+            {
+              indexed: false,
+              internalType: "string",
+              name: "newGreeting",
+              type: "string",
+            },
+            {
+              indexed: false,
+              internalType: "bool",
+              name: "premium",
+              type: "bool",
+            },
+            {
+              indexed: false,
+              internalType: "uint256",
+              name: "value",
+              type: "uint256",
+            },
+          ],
+          name: "GreetingChange",
+          type: "event",
+        },
+        {
+          anonymous: false,
+          inputs: [
+            {
+              indexed: true,
+              internalType: "uint256",
+              name: "escrowId",
+              type: "uint256",
+            },
+            {
+              indexed: true,
+              internalType: "uint256",
+              name: "milestoneId",
+              type: "uint256",
+            },
+          ],
+          name: "MilestoneApproved",
+          type: "event",
+        },
+        {
+          anonymous: false,
+          inputs: [
+            {
+              indexed: true,
+              internalType: "uint256",
+              name: "escrowId",
+              type: "uint256",
+            },
+            {
+              indexed: true,
+              internalType: "uint256",
+              name: "milestoneId",
+              type: "uint256",
+            },
+            {
+              indexed: false,
+              internalType: "uint256",
+              name: "amount",
+              type: "uint256",
+            },
+          ],
+          name: "MilestoneCreated",
+          type: "event",
+        },
+        {
+          anonymous: false,
+          inputs: [
+            {
+              indexed: true,
+              internalType: "uint256",
+              name: "escrowId",
+              type: "uint256",
+            },
+            {
+              indexed: true,
+              internalType: "uint256",
+              name: "milestoneId",
+              type: "uint256",
+            },
+            {
+              indexed: true,
+              internalType: "address",
+              name: "seller",
+              type: "address",
+            },
+            {
+              indexed: false,
+              internalType: "uint256",
+              name: "amount",
+              type: "uint256",
+            },
+          ],
+          name: "MilestonePaid",
+          type: "event",
+        },
+        {
+          anonymous: false,
+          inputs: [
+            {
+              indexed: true,
+              internalType: "uint256",
+              name: "escrowId",
+              type: "uint256",
+            },
+            {
+              indexed: true,
+              internalType: "uint256",
+              name: "milestoneId",
+              type: "uint256",
+            },
+            {
+              indexed: true,
+              internalType: "address",
+              name: "buyer",
+              type: "address",
+            },
+            {
+              indexed: false,
+              internalType: "uint256",
+              name: "amount",
+              type: "uint256",
+            },
+          ],
+          name: "MilestoneRefunded",
+          type: "event",
+        },
+        {
+          anonymous: false,
+          inputs: [
+            {
+              indexed: true,
+              internalType: "uint256",
+              name: "escrowId",
+              type: "uint256",
+            },
+            {
+              indexed: true,
+              internalType: "uint256",
+              name: "milestoneId",
+              type: "uint256",
+            },
+          ],
+          name: "MilestoneRejected",
+          type: "event",
+        },
+        {
+          anonymous: false,
+          inputs: [
+            {
+              indexed: true,
+              internalType: "uint256",
+              name: "escrowId",
+              type: "uint256",
+            },
+            {
+              indexed: true,
+              internalType: "uint256",
+              name: "milestoneId",
+              type: "uint256",
+            },
+            {
+              indexed: false,
+              internalType: "bytes32",
+              name: "proofHash",
+              type: "bytes32",
+            },
+          ],
+          name: "MilestoneSubmitted",
+          type: "event",
+        },
+        {
+          stateMutability: "payable",
+          type: "fallback",
+        },
+        {
+          inputs: [
+            {
+              internalType: "uint256",
+              name: "escrowId",
+              type: "uint256",
+            },
+            {
+              internalType: "uint256",
+              name: "milestoneId",
+              type: "uint256",
+            },
+          ],
+          name: "approveMilestone",
+          outputs: [],
+          stateMutability: "nonpayable",
+          type: "function",
+        },
+        {
+          inputs: [
+            {
+              internalType: "uint256",
+              name: "escrowId",
+              type: "uint256",
+            },
+          ],
+          name: "cancelEscrow",
+          outputs: [],
+          stateMutability: "nonpayable",
+          type: "function",
+        },
+        {
+          inputs: [
+            {
+              internalType: "address",
+              name: "seller",
+              type: "address",
+            },
+            {
+              internalType: "address",
+              name: "token",
+              type: "address",
+            },
+            {
+              internalType: "uint256",
+              name: "totalAmount",
+              type: "uint256",
+            },
+            {
+              internalType: "uint256",
+              name: "deadline",
+              type: "uint256",
+            },
+            {
+              internalType: "address",
+              name: "arbiter",
+              type: "address",
+            },
+            {
+              internalType: "uint256[]",
+              name: "milestoneAmounts",
+              type: "uint256[]",
+            },
+          ],
+          name: "createEscrow",
+          outputs: [
+            {
+              internalType: "uint256",
+              name: "escrowId",
+              type: "uint256",
+            },
+          ],
+          stateMutability: "nonpayable",
+          type: "function",
+        },
+        {
+          inputs: [
+            {
+              internalType: "uint256",
+              name: "escrowId",
+              type: "uint256",
+            },
+          ],
+          name: "fundNativeEscrow",
+          outputs: [],
+          stateMutability: "payable",
+          type: "function",
+        },
+        {
+          inputs: [
+            {
+              internalType: "uint256",
+              name: "escrowId",
+              type: "uint256",
+            },
+          ],
+          name: "fundTokenEscrow",
+          outputs: [],
+          stateMutability: "nonpayable",
+          type: "function",
+        },
+        {
+          inputs: [
+            {
+              internalType: "uint256",
+              name: "escrowId",
+              type: "uint256",
+            },
+          ],
+          name: "getAllMilestones",
+          outputs: [
+            {
+              components: [
+                {
+                  internalType: "uint256",
+                  name: "amount",
+                  type: "uint256",
+                },
+                {
+                  internalType: "bytes32",
+                  name: "proofHash",
+                  type: "bytes32",
+                },
+                {
+                  internalType: "enum YourContract.MilestoneStatus",
+                  name: "status",
+                  type: "uint8",
+                },
+                {
+                  internalType: "uint256",
+                  name: "submittedAt",
+                  type: "uint256",
+                },
+                {
+                  internalType: "uint256",
+                  name: "resolvedAt",
+                  type: "uint256",
+                },
+              ],
+              internalType: "struct YourContract.Milestone[]",
+              name: "",
+              type: "tuple[]",
+            },
+          ],
+          stateMutability: "view",
+          type: "function",
+        },
+        {
+          inputs: [
+            {
+              internalType: "uint256",
+              name: "escrowId",
+              type: "uint256",
+            },
+          ],
+          name: "getEscrow",
+          outputs: [
+            {
+              components: [
+                {
+                  internalType: "uint256",
+                  name: "id",
+                  type: "uint256",
+                },
+                {
+                  internalType: "address",
+                  name: "buyer",
+                  type: "address",
+                },
+                {
+                  internalType: "address",
+                  name: "seller",
+                  type: "address",
+                },
+                {
+                  internalType: "address",
+                  name: "token",
+                  type: "address",
+                },
+                {
+                  internalType: "uint256",
+                  name: "totalAmount",
+                  type: "uint256",
+                },
+                {
+                  internalType: "uint256",
+                  name: "depositedAmount",
+                  type: "uint256",
+                },
+                {
+                  internalType: "uint256",
+                  name: "releasedAmount",
+                  type: "uint256",
+                },
+                {
+                  internalType: "uint256",
+                  name: "refundedAmount",
+                  type: "uint256",
+                },
+                {
+                  internalType: "uint256",
+                  name: "deadline",
+                  type: "uint256",
+                },
+                {
+                  internalType: "address",
+                  name: "arbiter",
+                  type: "address",
+                },
+                {
+                  internalType: "enum YourContract.EscrowStatus",
+                  name: "status",
+                  type: "uint8",
+                },
+                {
+                  internalType: "uint256",
+                  name: "milestoneCount",
+                  type: "uint256",
+                },
+              ],
+              internalType: "struct YourContract.Escrow",
+              name: "",
+              type: "tuple",
+            },
+          ],
+          stateMutability: "view",
+          type: "function",
+        },
+        {
+          inputs: [],
+          name: "getEscrowCount",
+          outputs: [
+            {
+              internalType: "uint256",
+              name: "",
+              type: "uint256",
+            },
+          ],
+          stateMutability: "view",
+          type: "function",
+        },
+        {
+          inputs: [
+            {
+              internalType: "uint256",
+              name: "escrowId",
+              type: "uint256",
+            },
+            {
+              internalType: "uint256",
+              name: "milestoneId",
+              type: "uint256",
+            },
+          ],
+          name: "getMilestone",
+          outputs: [
+            {
+              components: [
+                {
+                  internalType: "uint256",
+                  name: "amount",
+                  type: "uint256",
+                },
+                {
+                  internalType: "bytes32",
+                  name: "proofHash",
+                  type: "bytes32",
+                },
+                {
+                  internalType: "enum YourContract.MilestoneStatus",
+                  name: "status",
+                  type: "uint8",
+                },
+                {
+                  internalType: "uint256",
+                  name: "submittedAt",
+                  type: "uint256",
+                },
+                {
+                  internalType: "uint256",
+                  name: "resolvedAt",
+                  type: "uint256",
+                },
+              ],
+              internalType: "struct YourContract.Milestone",
+              name: "",
+              type: "tuple",
+            },
+          ],
+          stateMutability: "view",
+          type: "function",
+        },
+        {
+          inputs: [
+            {
+              internalType: "uint256",
+              name: "escrowId",
+              type: "uint256",
+            },
+          ],
+          name: "getRemainingBalance",
+          outputs: [
+            {
+              internalType: "uint256",
+              name: "",
+              type: "uint256",
+            },
+          ],
+          stateMutability: "view",
+          type: "function",
+        },
+        {
+          inputs: [],
+          name: "greeting",
+          outputs: [
+            {
+              internalType: "string",
+              name: "",
+              type: "string",
+            },
+          ],
+          stateMutability: "view",
+          type: "function",
+        },
+        {
+          inputs: [],
+          name: "owner",
+          outputs: [
+            {
+              internalType: "address",
+              name: "",
+              type: "address",
+            },
+          ],
+          stateMutability: "view",
+          type: "function",
+        },
+        {
+          inputs: [],
+          name: "premium",
+          outputs: [
+            {
+              internalType: "bool",
+              name: "",
+              type: "bool",
+            },
+          ],
+          stateMutability: "view",
+          type: "function",
+        },
+        {
+          inputs: [
+            {
+              internalType: "uint256",
+              name: "escrowId",
+              type: "uint256",
+            },
+            {
+              internalType: "uint256",
+              name: "milestoneId",
+              type: "uint256",
+            },
+          ],
+          name: "raiseDispute",
+          outputs: [],
+          stateMutability: "nonpayable",
+          type: "function",
+        },
+        {
+          inputs: [
+            {
+              internalType: "uint256",
+              name: "escrowId",
+              type: "uint256",
+            },
+            {
+              internalType: "uint256",
+              name: "milestoneId",
+              type: "uint256",
+            },
+          ],
+          name: "refundMilestoneAfterDeadline",
+          outputs: [],
+          stateMutability: "nonpayable",
+          type: "function",
+        },
+        {
+          inputs: [
+            {
+              internalType: "uint256",
+              name: "escrowId",
+              type: "uint256",
+            },
+            {
+              internalType: "uint256",
+              name: "milestoneId",
+              type: "uint256",
+            },
+          ],
+          name: "rejectMilestone",
+          outputs: [],
+          stateMutability: "nonpayable",
+          type: "function",
+        },
+        {
+          inputs: [
+            {
+              internalType: "uint256",
+              name: "escrowId",
+              type: "uint256",
+            },
+            {
+              internalType: "uint256",
+              name: "milestoneId",
+              type: "uint256",
+            },
+          ],
+          name: "releaseMilestone",
+          outputs: [],
+          stateMutability: "nonpayable",
+          type: "function",
+        },
+        {
+          inputs: [
+            {
+              internalType: "uint256",
+              name: "escrowId",
+              type: "uint256",
+            },
+            {
+              internalType: "uint256",
+              name: "milestoneId",
+              type: "uint256",
+            },
+            {
+              internalType: "uint256",
+              name: "sellerAmount",
+              type: "uint256",
+            },
+            {
+              internalType: "uint256",
+              name: "buyerAmount",
+              type: "uint256",
+            },
+          ],
+          name: "resolveDispute",
+          outputs: [],
+          stateMutability: "nonpayable",
+          type: "function",
+        },
+        {
+          inputs: [
+            {
+              internalType: "uint256",
+              name: "escrowId",
+              type: "uint256",
+            },
+            {
+              internalType: "uint256",
+              name: "milestoneId",
+              type: "uint256",
+            },
+            {
+              internalType: "bytes32",
+              name: "proofHash",
+              type: "bytes32",
+            },
+          ],
+          name: "resubmitMilestone",
+          outputs: [],
+          stateMutability: "nonpayable",
+          type: "function",
+        },
+        {
+          inputs: [
+            {
+              internalType: "string",
+              name: "_newGreeting",
+              type: "string",
+            },
+          ],
+          name: "setGreeting",
+          outputs: [],
+          stateMutability: "payable",
+          type: "function",
+        },
+        {
+          inputs: [
+            {
+              internalType: "uint256",
+              name: "escrowId",
+              type: "uint256",
+            },
+            {
+              internalType: "uint256",
+              name: "milestoneId",
+              type: "uint256",
+            },
+            {
+              internalType: "bytes32",
+              name: "proofHash",
+              type: "bytes32",
+            },
+          ],
+          name: "submitMilestone",
+          outputs: [],
+          stateMutability: "nonpayable",
+          type: "function",
+        },
+        {
+          inputs: [],
+          name: "totalCounter",
+          outputs: [
+            {
+              internalType: "uint256",
+              name: "",
+              type: "uint256",
+            },
+          ],
+          stateMutability: "view",
+          type: "function",
+        },
+        {
+          inputs: [
+            {
+              internalType: "address",
+              name: "",
+              type: "address",
+            },
+          ],
+          name: "userGreetingCounter",
+          outputs: [
+            {
+              internalType: "uint256",
+              name: "",
+              type: "uint256",
+            },
+          ],
+          stateMutability: "view",
+          type: "function",
+        },
+        {
+          inputs: [],
+          name: "withdraw",
+          outputs: [],
+          stateMutability: "nonpayable",
+          type: "function",
+        },
+        {
+          stateMutability: "payable",
+          type: "receive",
+        },
+      ],
+      inheritedFunctions: {},
+      deployedOnBlock: 54194268,
+    },
+  },
   31337: {
     YourContract: {
       address: "0x9fe46736679d2d9a65f0992f2272de9f3c7fa6e0",
